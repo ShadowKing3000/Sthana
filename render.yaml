@@ -1,0 +1,20 @@
+# Render Blueprint: New > Blueprint > pick this repo
+services:
+  - type: web
+    name: sthana
+    runtime: docker
+    plan: standard            # 2 GB RAM. 512 MB plans (free/starter) are likely to run out of memory with 3 models
+    healthCheckPath: /healthz
+    envVars:
+      - key: OUTPUT_DIR
+        value: /var/data/outputs
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: SITE_PASSWORD      # optional: share the password with the judges
+        sync: false
+      - key: MAX_UPLOAD_MB
+        value: "200"
+    disk:                       # keeps history + CSVs across restarts/deploys (paid plans only)
+      name: sthana-data
+      mountPath: /var/data
+      sizeGB: 1

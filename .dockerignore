@@ -1,0 +1,10 @@
+outputs/
+uploads/
+batch_outputs/
+venv/
+.venv/
+__pycache__/
+*.pyc
+.git/
+*.zip
+reset_history.bat
